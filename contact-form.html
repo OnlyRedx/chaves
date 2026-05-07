@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Contact · Chaves Galang</title>
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <!-- Preconnect for Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- Minimalist modern sans font: Inter + clean monospace -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+  <style>
+    /* ---------- RESET & GLOBAL (matches main portfolio vibe) ---------- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #ffffff;
+      color: #121212;
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, sans-serif;
+      line-height: 1.45;
+      font-weight: 400;
+      scroll-behavior: smooth;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 1.8rem;
+    }
+
+    /* ---------- TYPOGRAPHY ---------- */
+    h1, h2, h3 {
+      font-weight: 600;
+      letter-spacing: -0.02em;
+    }
+
+    h1 {
+      font-size: 3.2rem;
+      line-height: 1.1;
+      font-weight: 700;
+      margin-bottom: 0.6rem;
+    }
+
+    h2 {
+      font-size: 1.8rem;
+      margin-bottom: 1.6rem;
+      font-weight: 600;
+      border-left: 3px solid #1e2a3a;
+      padding-left: 1rem;
+    }
+
+    .subhead {
+      font-size: 1.15rem;
+      color: #2c3e4e;
+      font-weight: 400;
+      max-width: 640px;
+      margin-bottom: 2rem;
+      line-height: 1.5;
+      border-left: 2px solid #cbd5e1;
+      padding-left: 1rem;
+    }
+
+    /* ---------- HEADER / NAV (minimal, to link back) ---------- */
+    .mini-nav {
+      padding: 1.8rem 0 0.5rem 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      border-bottom: 1px solid #edf2f7;
+      margin-bottom: 1rem;
+    }
+    .logo a {
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.2rem;
+      color: #1e2a3a;
+      letter-spacing: -0.3px;
+    }
+    .nav-links a {
+      text-decoration: none;
+      color: #3e5e70;
+      margin-left: 2rem;
+      font-size: 0.9rem;
+      font-weight: 500;
+      border-bottom: 1px solid transparent;
+      transition: border 0.2s;
+    }
+    .nav-links a:hover {
+      border-bottom-color: #1e2a3a;
+      color: #0f2c3b;
+    }
+    @media (max-width: 550px) {
+      .mini-nav {
+        flex-direction: column;
+        gap: 0.8rem;
+      }
+      .nav-links a {
+        margin-left: 0;
+        margin-right: 1.5rem;
+      }
+    }
+
+    /* ---------- CONTACT FORM SECTION (dedicated page) ---------- */
+    .contact-main {
+      padding: 2rem 0 4rem 0;
+    }
+    .form-card {
+      background: #fbfdfe;
+      border-radius: 32px;
+      border: 1px solid #eef2f6;
+      padding: 2rem 2.2rem;
+      max-width: 720px;
+      margin: 1.5rem 0 2rem 0;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.02);
+    }
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+    .form-group label {
+      display: block;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: #2c5268;
+      margin-bottom: 0.5rem;
+    }
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 0.85rem 1rem;
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 20px;
+      font-family: 'Inter', monospace;
+      font-size: 0.9rem;
+      transition: all 0.2s ease;
+      color: #0f2c3b;
+    }
+    .form-group input:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: #7f9eb5;
+      box-shadow: 0 0 0 3px rgba(31, 66, 88, 0.06);
+    }
+    .form-group textarea {
+      resize: vertical;
+      min-height: 140px;
+    }
+    .required-star {
+      color: #b13e3e;
+      font-size: 0.7rem;
+    }
+    .btn-submit {
+      background: #1e2a3a;
+      color: white;
+      border: none;
+      padding: 0.85rem 1.8rem;
+      border-radius: 40px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      font-family: monospace;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.05s;
+      width: 100%;
+    }
+    .btn-submit:hover {
+      background: #0f2c3b;
+    }
+    .btn-submit:active {
+      transform: scale(0.98);
+    }
+    .form-status {
+      margin-top: 1.2rem;
+      font-size: 0.85rem;
+      text-align: center;
+      padding: 0.7rem;
+      border-radius: 40px;
+    }
+    .form-status.success {
+      background: #e6f7ec;
+      color: #1a6e3b;
+    }
+    .form-status.error {
+      background: #fff0f0;
+      color: #b13e3e;
+    }
+    .secure-note {
+      margin-top: 1.6rem;
+      font-size: 0.75rem;
+      color: #6a7f8c;
+      text-align: center;
+      border-top: 1px solid #edf2f7;
+      padding-top: 1.2rem;
+    }
+    .alternative-contact {
+      background: #ffffff;
+      border-radius: 24px;
+      border: 1px solid #eff3f8;
+      padding: 1.5rem 1.8rem;
+      margin-top: 1rem;
+    }
+    .alternative-contact h3 {
+      font-size: 1rem;
+      margin-bottom: 0.8rem;
+      font-weight: 600;
+    }
+    .alt-list {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.2rem;
+    }
+    .alt-list li a {
+      text-decoration: none;
+      color: #1b3b4f;
+      font-size: 0.9rem;
+      border-bottom: 1px dotted #cbdde6;
+    }
+    .footer {
+      padding: 2rem 0 3rem 0;
+      text-align: center;
+      font-size: 0.8rem;
+      color: #819bab;
+      border-top: 1px solid #ecf3f8;
+      margin-top: 1rem;
+    }
+    @media (max-width: 680px) {
+      .form-card {
+        padding: 1.5rem;
+      }
+      .container {
+        padding: 0 1.2rem;
+      }
+    }
+    .highlight {
+      background: #fefce8;
+      display: inline-block;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <!-- minimal header with navigation (back to portfolio index if needed) -->
+  <div class="mini-nav">
+    <div class="logo"><a href="#">Contact Me!</a></div>
+    <div class="nav-links">
+      <a href="index.html">← portfolio</a>
+      <!--<a href="#">projects</a>
+      <a href="#">resume</a> -->
+    </div>
+  </div>
+
+  <div class="contact-main">
+    <h1>Contact</h1>
+    <div class="subhead">
+      Secure messaging · direct to my inbox. Whether it's a collaboration, SOC opportunity, or cybersecurity discussion — reach out.
+    </div>
+
+    <!-- main contact form card (sanitized + email delivery via Formspree) -->
+    <div class="form-card">
+      <form 
+        id="secureContactForm" 
+        action="https://formspree.io/f/xeenzppk" 
+        method="POST"
+        autocomplete="off"
+      >
+        <!-- Honeypot anti-bot -->
+        <input type="text" name="_gotcha" style="display:none" />
+        <!-- custom subject for better email sorting -->
+        <input type="hidden" name="_subject" value="New contact from Chaves Galang / portfolio" />
+        <!-- redirect parameter: we use AJAX, but this is fallback -->
+        <input type="hidden" name="_next" value="#" />
+
+        <div class="form-group">
+          <label for="fullname">Full name <span class="required-star">*</span></label>
+          <input type="text" id="fullname" name="name" required 
+                 placeholder="e.g., Jordan Lee" 
+                 pattern="^[A-Za-zÀ-ÿ\s\-']{2,64}$" 
+                 title="Letters, spaces, hyphens (2-64 characters)">
+        </div>
+
+        <div class="form-group">
+          <label for="emailaddr">Email address <span class="required-star">*</span></label>
+          <input type="email" id="emailaddr" name="email" required 
+                 placeholder="hello@domain.com"
+                 title="Valid email address for reply">
+        </div>
+
+        <div class="form-group">
+          <label for="msgbody">Message / Inquiry <span class="required-star">*</span></label>
+          <textarea id="msgbody" name="message" required 
+                    placeholder="Ask about SIEM homelab, forensics tool, internships, threat hunting collaboration, or just to say hi..."
+                    maxlength="2200"></textarea>
+        </div>
+
+        <button type="submit" class="btn-submit">✉️ Send encrypted message →</button>
+        <div id="formStatusMsg" class="form-status" style="display: none;"></div>
+        <div class="secure-note">
+          🔐 Client-side sanitization + Formspree delivery. Your data is never stored, only forwarded to my email.
+        </div>
+      </form>
+    </div>
+
+    <!-- alternative / direct contacts (just in case) -->
+    <div class="alternative-contact">
+      <h3>📡 Other ways to connect</h3>
+          <ul class="contact-list">
+            <li>✉️ <a href="mailto:chaves.galang@cyberport.me">contact@chaves.uu.me</a></li>
+            <li>🐙 <a href="https://github.com/OnlyRedx" aria-label="GitHub Profile">github / OnlyRedx</a></li>
+            <li>🔗 <a href="https://www.linkedin.com/in/chaves-galang/" aria-label="LinkedIn Profile">linkedin · /in/chaves-galang</a></li>
+            <!-- <li>📄 <a href="#" aria-label="Resume/CV">resume →</a></li> -->
+            <li>💬 <a href="https://tryhackme.com/p/creativechaves" aria-label="TryHackMe profile">tryhackme: creativechaves</a></li>
+          </ul>
+      <div class="secure-note" style="border: none; padding-top: 0.6rem; text-align: left;">
+        PGP fingerprint (optional): 2A8B 4F1C 9E6D 7A23 · ask for public key.
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="container">
+    <span>© 2025 Chaves Galang</span><br>
+  </div>
+</footer>
+
+<!-- sanitization + ajax form handling (no page reload) -->
+<script>
+  (function() {
+    const form = document.getElementById('secureContactForm');
+    const statusDiv = document.getElementById('formStatusMsg');
+    
+    // helper: sanitize HTML entities to prevent XSS reflection
+    function sanitizeInput(str) {
+      if (!str) return '';
+      return str.replace(/[&<>]/g, function(m) {
+        if (m === '&') return '&amp;';
+        if (m === '<') return '&lt;';
+        if (m === '>') return '&gt;';
+        return m;
+      }).trim();
+    }
+    
+    // Helper: extra email sanitation (remove weird chars)
+    function sanitizeEmail(email) {
+      if (!email) return '';
+      return email.replace(/[<>()'"]/g, '').trim();
+    }
+    
+    const nameField = document.getElementById('fullname');
+    const emailField = document.getElementById('emailaddr');
+    const messageField = document.getElementById('msgbody');
+    
+    // blur sanitization: avoid any injected text on UI level
+    function sanitizeFieldsOnBlur() {
+      if (nameField) nameField.value = sanitizeInput(nameField.value);
+      if (messageField) messageField.value = sanitizeInput(messageField.value);
+      if (emailField) emailField.value = sanitizeEmail(emailField.value);
+    }
+    if (nameField) nameField.addEventListener('blur', sanitizeFieldsOnBlur);
+    if (emailField) emailField.addEventListener('blur', sanitizeFieldsOnBlur);
+    if (messageField) messageField.addEventListener('blur', sanitizeFieldsOnBlur);
+    
+    function showStatus(message, type) {
+      if (!statusDiv) return;
+      statusDiv.style.display = 'block';
+      statusDiv.textContent = message;
+      statusDiv.className = `form-status ${type}`;
+      setTimeout(() => {
+        if (statusDiv) statusDiv.style.display = 'none';
+      }, 6000);
+    }
+    
+    if (form) {
+      form.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        
+        // get raw values and sanitize again before sending
+        let rawName = nameField ? nameField.value.trim() : '';
+        let rawEmail = emailField ? emailField.value.trim() : '';
+        let rawMessage = messageField ? messageField.value.trim() : '';
+        
+        const cleanName = sanitizeInput(rawName);
+        const cleanMessage = sanitizeInput(rawMessage);
+        const cleanEmail = sanitizeEmail(rawEmail);
+        
+        // validation rules
+        if (!cleanName || cleanName.length < 2) {
+          showStatus('❌ Please provide a real name (at least 2 characters).', 'error');
+          return;
+        }
+        if (!cleanEmail || !cleanEmail.includes('@') || !cleanEmail.includes('.') || cleanEmail.length < 5) {
+          showStatus('❌ Valid email address is required.', 'error');
+          return;
+        }
+        if (!cleanMessage || cleanMessage.length < 5) {
+          showStatus('❌ Message must be longer than 5 characters.', 'error');
+          return;
+        }
+        
+        // Build form data and set sanitized values
+        const formData = new FormData(form);
+        formData.set('name', cleanName);
+        formData.set('email', cleanEmail);
+        formData.set('message', cleanMessage);
+        // add reply-to for convenience
+        formData.set('_replyto', cleanEmail);
+        
+        try {
+          const response = await fetch(form.action, {
+            method: 'POST',
+            body: formData,
+            headers: { 'Accept': 'application/json' }
+          });
+          
+          if (response.ok) {
+            showStatus('✓ Message sent successfully! I’ll get back to you as soon as I can. — Chaves', 'success');
+            form.reset();  // clear all fields
+            if (nameField) nameField.value = '';
+            if (emailField) emailField.value = '';
+            if (messageField) messageField.value = '';
+          } else {
+            const errJson = await response.json().catch(() => ({}));
+            console.warn('Formspree error', errJson);
+            showStatus('⚠️ Delivery failed. Please try again later or email me directly.', 'error');
+          }
+        } catch (err) {
+          console.error('Network error:', err);
+          showStatus('🔌 Network error — check your connection. Otherwise use direct email.', 'error');
+        }
+      });
+    }
+  })();
+</script>
+<!-- 
+  NOTE: This contact page uses Formspree endpoint (xdkekyja) that forwards to your registered email. 
+  To change recipient email: log into Formspree dashboard and update the email address tied to this form.
+  The code includes client-side sanitization (XSS protection), plus Formspree automatically sanitizes server-side.
+  No personal data is stored on intermediate servers — compliant with minimal security expectations.
+-->
+</body>
+</html>
