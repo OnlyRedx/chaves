@@ -75,6 +75,73 @@
       padding-left: 1rem;
     }
 
+     /* ---------- HEADER / NAV (minimal, with contact button) ---------- */
+    .site-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      padding: 1.5rem 0 0.5rem 0;
+      border-bottom: 1px solid #edf2f7;
+      margin-bottom: 1rem;
+      gap: 1rem;
+    }
+    .logo a {
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.25rem;
+      color: #1e2a3a;
+      letter-spacing: -0.3px;
+      font-family: monospace;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.8rem;
+    }
+    .nav-links a {
+      text-decoration: none;
+      color: #3e5e70;
+      font-size: 0.9rem;
+      font-weight: 500;
+      border-bottom: 1px solid transparent;
+      transition: border 0.2s;
+    }
+    .nav-links a:not(.contact-btn):hover {
+      border-bottom-color: #1e2a3a;
+      color: #0f2c3b;
+    }
+    /* contact button minimal but distinct */
+    .contact-btn {
+      background: #1e2a3a;
+      color: white !important;
+      padding: 0.45rem 1.2rem;
+      border-radius: 40px;
+      font-weight: 500;
+      font-size: 0.85rem;
+      border: none;
+      transition: background 0.2s, transform 0.05s;
+      display: inline-block;
+      text-decoration: none;
+      letter-spacing: -0.2px;
+      font-family: monospace;
+    }
+    .contact-btn:hover {
+      background: #0f2c3b;
+      transform: translateY(-1px);
+      border-bottom-color: transparent !important;
+    }
+    @media (max-width: 620px) {
+      .site-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .nav-links {
+        margin-top: 0.5rem;
+        flex-wrap: wrap;
+      }
+    }
+
     /* ---------- LAYOUT SECTIONS (minimal borders, airy) ---------- */
     section {
       padding: 4rem 0 3rem 0;
@@ -315,6 +382,18 @@
   </style>
 </head>
 <body>
+
+  <div class="container">
+  <!-- header with "contact me" button on top right -->
+  <div class="site-header">
+    <div class="logo"><a href="#">chaves.galang</a></div>
+    <div class="nav-links">
+      <!--<a href="#">projects</a>
+      <a href="#">resume</a> -->
+      <!-- CONTACT ME BUTTON (links to contact page) -->
+      <a href="contact-form.html" class="contact-btn">📡 contact me</a>
+    </div>
+  </div>
   <div class="container">
     <!-- Hero / name + focus -->
     <div class="hero">
@@ -323,6 +402,10 @@
         Cybersecurity student & aspiring analyst · focused on threat detection, digital forensics, and secure infrastructure. 
         Your shield in the digital storm.
       </div>
+       <div class="nav-links">
+      <!--<a href="#">projects</a>
+      <a href="#">resume</a> -->
+    </div>
     </div>
   </div>
 
@@ -422,6 +505,9 @@
             📍 based in Winnipeg, MB (open to remote & hybrid internships).<br>
             ⏳ currently looking for opportunites
           </div>
+          <div style="margin-top: 1rem; text-align: center;">
+          <a href="contact-form.html" style="background:#1e2a3a; color:white; padding: 0.5rem 1.2rem; border-radius: 40px; text-decoration: none; font-size:0.8rem; font-family: monospace; display: inline-block;">✉️ go to contact form →</a>
+        </div>
         </div>
       </div>
     </div>
