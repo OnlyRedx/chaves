@@ -35,7 +35,7 @@
             padding: 0 1.8rem;
         }
 
-        /* ---------- TYPOGRAPHY (crisp, technical yet minimal) ---------- */
+        /* ---------- TYPOGRAPHY ---------- */
         h1, h2, h3 {
             font-weight: 600;
             letter-spacing: -0.02em;
@@ -75,7 +75,7 @@
             padding-left: 1rem;
         }
 
-        /* ---------- HEADER / NAV (minimal, with contact button) ---------- */
+        /* ---------- HEADER / NAV ---------- */
         .site-header {
             display: flex;
             justify-content: space-between;
@@ -115,7 +115,7 @@
                     border-bottom-color: #1e2a3a;
                     color: #0f2c3b;
                 }
-        /* contact button minimal but distinct */
+        /* contact button */
         .contact-btn {
             background: #1e2a3a;
             color: white !important;
@@ -149,7 +149,7 @@
             }
         }
 
-        /* ---------- LAYOUT SECTIONS (minimal borders, airy) ---------- */
+        /* ---------- LAYOUT SECTIONS ---------- */
         section {
             padding: 4rem 0 3rem 0;
             border-bottom: 1px solid #eef2f5;
@@ -163,7 +163,7 @@
             padding: 4.5rem 0 1.8rem 0;
         }
 
-        /* ----- Project cards (cyber flavor) ----- */
+        /* ----- Project cards ----- */
         .projects-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
@@ -238,7 +238,7 @@
                 color: #000;
             }
 
-        /* ---------- Skills & tools (cybersecurity focus) ---------- */
+        /* ---------- Skills & tools ---------- */
         .skill-section {
             margin: 1rem 0;
         }
@@ -267,7 +267,105 @@
                 border-color: #b9e0d0;
             }
 
-        /* ----- about + contact (split clean) ----- */
+        /* ---------- Flip Animation For Skills & Tools ---------- */ 
+        .skills-hint {
+        font-size: 0.85rem;
+        color: #6a7f8c;
+        margin-top: -0.5rem;
+        margin-bottom: 1.5rem;
+        font-family: monospace;
+    }
+
+    .skills-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+        gap: 1.2rem;
+        margin-top: 1rem;
+    }
+
+    .skill-card {
+        background: transparent;
+        border: none;
+        padding: 0;
+        cursor: pointer;
+        perspective: 1000px; /* Gives the 3D depth */
+        height: 105px; /* Keeps all cards uniform height */
+        font-family: inherit;
+        outline: none;
+    }
+
+    .skill-card-inner {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        transition: transform 0.6s cubic-bezier(0.4, 0.2, 0.2, 1);
+        transform-style: preserve-3d; /* Ensures children stay in 3D space */
+    }
+
+    /* Flip action on hover, focus (keyboard), or click (JS mobile) */
+    .skill-card:hover .skill-card-inner,
+    .skill-card:focus-visible .skill-card-inner,
+    .skill-card.is-flipped .skill-card-inner {
+        transform: rotateY(180deg);
+    }
+
+    .skill-card-face {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+        border-radius: 12px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 1rem;
+        box-sizing: border-box;
+        border: 1px solid #e2e8f0;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+    }
+
+    /* --- FRONT FACE --- */
+    .skill-card-front {
+        background: #f8fafc;
+        color: #0f2c3f;
+    }
+
+    .skill-card.is-highlight .skill-card-front {
+        background: #ecfdf5;
+        border-color: #b9e0d0;
+    }
+
+    .skill-emoji {
+        font-size: 1.5rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .skill-name {
+        font-size: 0.85rem;
+        font-weight: 500;
+        font-family: monospace;
+        letter-spacing: -0.2px;
+        line-height: 1.2;
+    }
+
+    /* --- BACK FACE --- */
+    .skill-card-back {
+        background: #1e2a3a;
+        color: #ffffff;
+        transform: rotateY(180deg);
+        border-color: #1e2a3a;
+    }
+
+    .skill-card-back p {
+        font-size: 0.75rem;
+        line-height: 1.4;
+        margin: 0;
+        color: #e2e8f0;
+    }
+        /* ----- about + contact ----- */
         .about-wrapper {
             display: flex;
             flex-wrap: wrap;
@@ -395,6 +493,19 @@
             text-decoration-skip-ink: auto;
         }
     </style>
+    <!-- ============ JAVASCRIPT FOR TOUCH DEVICES ============ -->
+<script>
+    // On mobile, hover isn't reliable, so we toggle the flip on click/tap
+    document.querySelectorAll('.skill-card').forEach(card => {
+        card.addEventListener('click', function() {
+            this.classList.toggle('is-flipped');
+            
+            // Accessibility: update aria-pressed state
+            const isPressed = this.getAttribute('aria-pressed') === 'true';
+            this.setAttribute('aria-pressed', !isPressed);
+        });
+    });
+</script>
 </head>
 <body>
 
@@ -486,34 +597,151 @@
                             <span class="tag">Access Recertification & Risk Remediation</span>
                         </div>
                         <p class="project-desc">
-                            Developed an enterprise identity security transformation initiative for a fictional financial institution. Implemented a comprehensive identity and access management strategy, including group policy configuration, PowerShell scripting for security automation, log analysis, and access recertification processes to enhance overall security posture.
+                            Developed a security transformation initiative to secure enterprise identities within a fictional financial institution. Implemented an identity and access management strategy including setting up group policies, using PowerShell to automate security, analysing logs and implementing an access recertification process.
                         </p>
                         <!-- href="#" class="project-link">↘ case notes → -->
         </section>
 
         <!-- SKILLS & TOOLS: show technical arsenal (cybersecurity oriented) -->
         <section>
-            <div class="container">
-                <h2>Core Competencies</h2>
-                <div class="skill-section">
-                    <div class="skills-badge">
-                        <span class="skill-badge highlight">🛡️ Network Defense</span>
-                        <span class="skill-badge">🔎 Data Management and Analysis</span>
-                        <span class="skill-badge">🔒 Incident Response</span>
-                        <span class="skill-badge">👨🏽‍💻 Technical Support</span>
-                        <span class="skill-badge">🔟 OWASP Top 10</span>
-                        <span class="skill-badge">🕵🏻‍♂️ Forensics</span>
-                        <span class="skill-badge">🛜 Networking</span>
-                        <span class="skill-badge">⚙️ Security Automation</span>
-                        <span class="skill-badge">📊 Risk Identification and Management</span>
-                        <span class="skill-badge">🤹🏽‍♂️ Adaptability</span>
+        <div class="container">
+        <h2>Core Competencies</h2>
+        
+        <p class="skills-hint">↻ hover (or tap) a card to learn more</p>
+
+        <div class="skills-grid">
+            <!-- 1 -->
+            <button type="button" class="skill-card is-highlight" aria-pressed="false">
+                <div class="skill-card-inner">
+                    <div class="skill-card-face skill-card-front">
+                        <span class="skill-emoji">🛡️</span>
+                        <span class="skill-name">Network Defense</span>
                     </div>
-                   <!-- <div class="skills-badge" style="margin-top: 0.2rem;">--> 
-                    <!--</div>
+                    <div class="skill-card-face skill-card-back">
+                        <p>Putting safeguards in place to prevent unauthorised access, cyber attacks and misuse of a computer network, including infrastructure, data and users.</p>
+                    </div>
                 </div>
-                <div class="cert-badge">🎓 (ISC)² Candidate · Security+ in progress · Blue Team Level 1 (BTL1) aspirant</div>
-                </div> -->
-        </section>
+            </button>
+
+            <!-- 2 -->
+            <button type="button" class="skill-card" aria-pressed="false">
+                <div class="skill-card-inner">
+                    <div class="skill-card-face skill-card-front">
+                        <span class="skill-emoji">🔎</span>
+                        <span class="skill-name">Data Management &amp; Analysis</span>
+                    </div>
+                    <div class="skill-card-face skill-card-back">
+                        <p>Collecting, organising, storing and analysing data securely to gather useful insights.</p>
+                    </div>
+                </div>
+            </button>
+
+            <!-- 3 -->
+            <button type="button" class="skill-card" aria-pressed="false">
+                <div class="skill-card-inner">
+                    <div class="skill-card-face skill-card-front">
+                        <span class="skill-emoji">🔒</span>
+                        <span class="skill-name">Incident Response</span>
+                    </div>
+                    <div class="skill-card-face skill-card-back">
+                        <p>A defined process for identifying, containing, eliminating and recovering from a cyber security breach or attack.</p>
+                    </div>
+                </div>
+            </button>
+
+            <!-- 4 -->
+            <button type="button" class="skill-card" aria-pressed="false">
+                <div class="skill-card-inner">
+                    <div class="skill-card-face skill-card-front">
+                        <span class="skill-emoji">👨🏽‍💻</span>
+                        <span class="skill-name">Technical Support</span>
+                    </div>
+                    <div class="skill-card-face skill-card-back">
+                        <p>Helping users solve problems with their hardware, software and network.</p>
+                    </div>
+                </div>
+            </button>
+
+            <!-- 5 -->
+            <button type="button" class="skill-card" aria-pressed="false">
+                <div class="skill-card-inner">
+                    <div class="skill-card-face skill-card-front">
+                        <span class="skill-emoji">🔟</span>
+                        <span class="skill-name">OWASP Top 10</span>
+                    </div>
+                    <div class="skill-card-face skill-card-back">
+                        <p>A document that is regularly updated containing standard information on the most critical security risks to web applications.</p>
+                    </div>
+                </div>
+            </button>
+
+            <!-- 6 -->
+            <button type="button" class="skill-card" aria-pressed="false">
+                <div class="skill-card-inner">
+                    <div class="skill-card-face skill-card-front">
+                        <span class="skill-emoji">🕵🏻‍♂️</span>
+                        <span class="skill-name">Forensics</span>
+                    </div>
+                    <div class="skill-card-face skill-card-back">
+                        <p>Gathering, preserving, analysing and presenting digital evidence from computers, networks and storage.</p>
+                    </div>
+                </div>
+            </button>
+
+            <!-- 7 -->
+            <button type="button" class="skill-card" aria-pressed="false">
+                <div class="skill-card-inner">
+                    <div class="skill-card-face skill-card-front">
+                        <span class="skill-emoji">🛜</span>
+                        <span class="skill-name">Networking</span>
+                    </div>
+                    <div class="skill-card-face skill-card-back">
+                        <p>Connecting, configuring and managing devices to allow them to communicate with one another.</p>
+                    </div>
+                </div>
+            </button>
+
+            <!-- 8 -->
+            <button type="button" class="skill-card" aria-pressed="false">
+                <div class="skill-card-inner">
+                    <div class="skill-card-face skill-card-front">
+                        <span class="skill-emoji">⚙️</span>
+                        <span class="skill-name">Security Automation</span>
+                    </div>
+                    <div class="skill-card-face skill-card-back">
+                        <p>Using technology to perform security tasks with little or no interaction from humans.</p>
+                    </div>
+                </div>
+            </button>
+
+            <!-- 9 -->
+            <button type="button" class="skill-card" aria-pressed="false">
+                <div class="skill-card-inner">
+                    <div class="skill-card-face skill-card-front">
+                        <span class="skill-emoji">📊</span>
+                        <span class="skill-name">Risk Identification &amp; Management</span>
+                    </div>
+                    <div class="skill-card-face skill-card-back">
+                        <p>A defined process to identify possible threats to an organisations assets, analyse the impact of these threats and then implement controls to bring risk down to an acceptable level.</p>
+                    </div>
+                </div>
+            </button>
+
+            <!-- 10 -->
+            <button type="button" class="skill-card" aria-pressed="false">
+                <div class="skill-card-inner">
+                    <div class="skill-card-face skill-card-front">
+                        <span class="skill-emoji">🤹🏽‍♂️</span>
+                        <span class="skill-name">Adaptability</span>
+                    </div>
+                    <div class="skill-card-face skill-card-back">
+                        <p>Quickly learning new skills, adapting to changes and being able to change strategy when unexpected issues arise.</p>
+                    </div>
+                </div>
+            </button>
+            </div>
+            </div>
+            </section>
 
         <!-- ABOUT + CONTACT (tailored cyber student vibe) -->
         <section>
